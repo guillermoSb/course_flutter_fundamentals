@@ -3,8 +3,8 @@ on: [push, workflow_dispatch]
 jobs:
   drive:
     runs-on: ubuntu-latest
-    working-directory: ./ecommerce_app
     steps:
     - uses: actions/checkout@v1
     - uses: subosito/flutter-action@v1
     - run: flutter test
+      working-directory: ./ecommerce_app
