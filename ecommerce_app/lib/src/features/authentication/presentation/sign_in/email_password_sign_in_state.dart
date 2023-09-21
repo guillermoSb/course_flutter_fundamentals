@@ -1,5 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ecommerce_app/src/features/authentication/presentation/sign_in/string_validators.dart';
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
+//ignore: depend_on_referenced_packages
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Form type for email & password authentication
 enum EmailPasswordSignInFormType { signIn, register }
@@ -17,39 +20,36 @@ mixin EmailAndPasswordValidators {
 class EmailPasswordSignInState with EmailAndPasswordValidators {
   EmailPasswordSignInState({
     this.formType = EmailPasswordSignInFormType.signIn,
-    this.isLoading = false,
+    this.value = const AsyncValue.data(null),
   });
 
   final EmailPasswordSignInFormType formType;
-  final bool isLoading;
+  final AsyncValue<void> value;
+
+  bool get isLoading => value.isLoading;
+
+  @override
+  String toString() =>
+      'EmailPasswordSignInState(formType: $formType, value: $value)';
+
+  @override
+  bool operator ==(covariant EmailPasswordSignInState other) {
+    if (identical(this, other)) return true;
+
+    return other.formType == formType && other.value == value;
+  }
+
+  @override
+  int get hashCode => formType.hashCode ^ value.hashCode;
 
   EmailPasswordSignInState copyWith({
     EmailPasswordSignInFormType? formType,
-    bool? isLoading,
+    AsyncValue<void>? value,
   }) {
     return EmailPasswordSignInState(
       formType: formType ?? this.formType,
-      isLoading: isLoading ?? this.isLoading,
+      value: value ?? this.value,
     );
-  }
-
-  @override
-  String toString() {
-    return 'EmailPasswordSignInState(formType: $formType, isLoading: $isLoading)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is EmailPasswordSignInState &&
-        other.formType == formType &&
-        other.isLoading == isLoading;
-  }
-
-  @override
-  int get hashCode {
-    return formType.hashCode ^ isLoading.hashCode;
   }
 }
 
