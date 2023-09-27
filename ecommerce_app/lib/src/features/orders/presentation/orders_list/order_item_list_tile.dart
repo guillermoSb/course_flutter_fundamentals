@@ -36,7 +36,7 @@ class OrderItemListTile extends ConsumerWidget {
                   gapH12,
                   Text(
                     'Quantity: ${item.quantity}'.hardcoded,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.caption,
                   ),
                 ],
               ),

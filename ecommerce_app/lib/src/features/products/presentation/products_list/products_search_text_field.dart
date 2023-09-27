@@ -31,7 +31,7 @@ class _ProductsSearchTextFieldState extends State<ProductsSearchTextField> {
         return TextField(
           controller: _controller,
           autofocus: false,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Theme.of(context).textTheme.headline6,
           decoration: InputDecoration(
             hintText: 'Search products'.hardcoded,
             icon: const Icon(Icons.search),

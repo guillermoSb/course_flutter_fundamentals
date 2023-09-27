@@ -64,6 +64,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                 pageBuilder: (context, state) {
                   final productId = state.pathParameters['id']!;
                   return MaterialPage(
+                    key: state.pageKey,
                     fullscreenDialog: true,
                     child: LeaveReviewScreen(productId: productId),
                   );
@@ -74,17 +75,19 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: 'cart',
             name: AppRoute.cart.name,
-            pageBuilder: (context, state) => const MaterialPage(
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
               fullscreenDialog: true,
-              child: ShoppingCartScreen(),
+              child: const ShoppingCartScreen(),
             ),
             routes: [
               GoRoute(
                 path: 'checkout',
                 name: AppRoute.checkout.name,
-                pageBuilder: (context, state) => const MaterialPage(
+                pageBuilder: (context, state) => MaterialPage(
+                  key: ValueKey(state.location),
                   fullscreenDialog: true,
-                  child: CheckoutScreen(),
+                  child: const CheckoutScreen(),
                 ),
               ),
             ],
@@ -92,25 +95,28 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: 'orders',
             name: AppRoute.orders.name,
-            pageBuilder: (context, state) => const MaterialPage(
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
               fullscreenDialog: true,
-              child: OrdersListScreen(),
+              child: const OrdersListScreen(),
             ),
           ),
           GoRoute(
             path: 'account',
             name: AppRoute.account.name,
-            pageBuilder: (context, state) => const MaterialPage(
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
               fullscreenDialog: true,
-              child: AccountScreen(),
+              child: const AccountScreen(),
             ),
           ),
           GoRoute(
             path: 'signIn',
             name: AppRoute.signIn.name,
-            pageBuilder: (context, state) => const MaterialPage(
+            pageBuilder: (context, state) => MaterialPage(
+              key: state.pageKey,
               fullscreenDialog: true,
-              child: EmailPasswordSignInScreen(
+              child: const EmailPasswordSignInScreen(
                 formType: EmailPasswordSignInFormType.signIn,
               ),
             ),

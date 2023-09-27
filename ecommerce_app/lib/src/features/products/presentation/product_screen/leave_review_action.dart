@@ -39,7 +39,7 @@ class LeaveReviewAction extends ConsumerWidget {
               text: 'Leave a review'.hardcoded,
               style: Theme.of(context)
                   .textTheme
-                  .bodyLarge!
+                  .bodyText1!
                   .copyWith(color: Colors.green[700]),
               onPressed: () => context.goNamed(
                 AppRoute.leaveReview.name,

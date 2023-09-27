@@ -31,14 +31,14 @@ class ProductReviewCard extends ConsumerWidget {
                     showNotImplementedAlertDialog(context: context);
                   },
                 ),
-                Text(dateFormatted, style: Theme.of(context).textTheme.bodySmall),
+                Text(dateFormatted, style: Theme.of(context).textTheme.caption),
               ],
             ),
             if (review.comment.isNotEmpty) ...[
               gapH16,
               Text(
                 review.comment,
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Theme.of(context).textTheme.caption,
               )
             ],
           ],

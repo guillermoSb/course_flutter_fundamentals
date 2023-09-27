@@ -34,7 +34,7 @@ class OrdersListScreen extends StatelessWidget {
           ? Center(
               child: Text(
                 'No previous orders'.hardcoded,
-                style: Theme.of(context).textTheme.displaySmall,
+                style: Theme.of(context).textTheme.headline3,
                 textAlign: TextAlign.center,
               ),
             )
