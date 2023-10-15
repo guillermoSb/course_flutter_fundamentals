@@ -8,6 +8,7 @@ import 'package:ecommerce_app/src/features/cart/domain/item.dart';
 import 'package:ecommerce_app/src/features/cart/domain/mutable_cart.dart';
 import 'package:ecommerce_app/src/features/products/data/fake_products_repository.dart';
 import 'package:ecommerce_app/src/features/products/domain/product.dart';
+import 'package:ecommerce_app/src/features/wish_list/application/wish_list_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CartService {
@@ -47,6 +48,9 @@ class CartService {
   Future<void> addItem(Item item) async {
     final cart = await _fetchCart();
     final updated = cart.addItem(item);
+    final wishListService = ref.read(wishListServiceProvider);
+    // remove the item from the wish list if it exists
+    await wishListService.removeProduct(item.productId);
     await _setCart(updated);
   }
 

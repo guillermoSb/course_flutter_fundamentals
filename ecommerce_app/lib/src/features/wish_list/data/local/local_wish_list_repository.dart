@@ -8,6 +8,7 @@ abstract class LocalWishListRepository {
   Future<void> setWishList(WishList wishList);
 }
 
-final localWishListProvider = Provider<LocalWishListRepository>((ref) {
-  return FakeLocalWishListRepository();
+final localWishListRepositoryProvider =
+    Provider<LocalWishListRepository>((ref) {
+  throw UnimplementedError();
 });

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/src/constants/app_sizes.dart';
 import 'package:ecommerce_app/src/features/products/presentation/home_app_bar/shopping_cart_icon.dart';
+import 'package:ecommerce_app/src/features/wish_list/application/wish_list_service.dart';
 import 'package:ecommerce_app/src/routing/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,14 +13,14 @@ class WishListIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final wishListItemsCount = 10;
+    final wishListItemsCount = ref.watch(wishListCountProvider);
     return Stack(
       children: [
         Center(
           child: IconButton(
             key: wishListIconKey,
             icon: const Icon(Icons.star),
-            onPressed: () => context.pushNamed(AppRoute.cart.name),
+            onPressed: () => context.pushNamed(AppRoute.wish.name),
           ),
         ),
         if (wishListItemsCount > 0)

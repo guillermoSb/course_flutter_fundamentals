@@ -15,7 +15,7 @@ class WishListService {
     if (user != null) {
       return ref.read(remoteWishListRepositoryProvider).fetchWishList(user.uid);
     } else {
-      return ref.read(localWishListProvider).fetchWishList();
+      return ref.read(localWishListRepositoryProvider).fetchWishList();
     }
   }
 
@@ -26,7 +26,7 @@ class WishListService {
           .read(remoteWishListRepositoryProvider)
           .setWishList(user.uid, wishList);
     } else {
-      return ref.read(localWishListProvider).setWishList(wishList);
+      return ref.read(localWishListRepositoryProvider).setWishList(wishList);
     }
   }
 
@@ -50,10 +50,15 @@ final wishListServiceProvider = Provider<WishListService>((ref) {
 final wishListProvider = StreamProvider<WishList>((ref) {
   final user = ref.watch(authRepositoryProvider).currentUser;
   if (user == null) {
-    return ref.watch(localWishListProvider).watchWishList();
+    return ref.watch(localWishListRepositoryProvider).watchWishList();
   } else {
     return ref.watch(remoteWishListRepositoryProvider).watchWishList(user.uid);
   }
+});
+
+final wishListCountProvider = Provider.autoDispose<int>((ref) {
+  final wishList = ref.watch(wishListProvider).value ?? const WishList();
+  return wishList.products.length;
 });
 
 final productInWishListProvider =

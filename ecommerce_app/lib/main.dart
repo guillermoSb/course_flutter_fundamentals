@@ -2,6 +2,8 @@ import 'package:ecommerce_app/src/app.dart';
 import 'package:ecommerce_app/src/features/cart/application/cart_sync_service.dart';
 import 'package:ecommerce_app/src/features/cart/data/local/local_cart_repository.dart';
 import 'package:ecommerce_app/src/features/cart/data/local/sembast_cart_repository.dart';
+import 'package:ecommerce_app/src/features/wish_list/data/local/local_wish_list_repository.dart';
+import 'package:ecommerce_app/src/features/wish_list/data/local/sembast_wish_list_repository.dart';
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +19,12 @@ void main() async {
   // * https://docs.flutter.dev/testing/errors
   registerErrorHandlers();
   final localCartRepository = await SembastCartRepository.makeDefault();
+  final localWishListRepository = await SembastWishListRepository.makeDefault();
   // * Create ProviderContainer with any required overrides
   final container = ProviderContainer(
     overrides: [
       localCartRepositoryProvider.overrideWithValue(localCartRepository),
+      localWishListRepositoryProvider.overrideWithValue(localWishListRepository)
     ],
   );
   // * Initialize CartSyncService to start the listener
