@@ -5,6 +5,7 @@ import 'package:ecommerce_app/src/features/products/presentation/home_app_bar/ho
 import 'package:ecommerce_app/src/features/products/presentation/product_screen/leave_review_action.dart';
 import 'package:ecommerce_app/src/features/products/presentation/product_screen/product_average_rating.dart';
 import 'package:ecommerce_app/src/features/reviews/presentation/product_reviews/product_reviews_list.dart';
+import 'package:ecommerce_app/src/features/wish_list/presentation/add_to_wishlist/add_to_wish_list_widget.dart';
 import 'package:ecommerce_app/src/localization/string_hardcoded.dart';
 import 'package:ecommerce_app/src/common_widgets/empty_placeholder_widget.dart';
 import 'package:ecommerce_app/src/utils/currency_formatter.dart';
@@ -94,6 +95,8 @@ class ProductDetails extends ConsumerWidget {
               const Divider(),
               gapH8,
               AddToCartWidget(product: product),
+              gapH8,
+              AddToWishListWidget(product: product)
             ],
           ),
         ),
